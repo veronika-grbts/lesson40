@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body class="bg-body-secondary">
+<div th:fragment="order-list" class="container p-2">
+    <div class="container">
+        <div class="text-left mb-3">
+            <a th:href="@{/create-order}" class="btn btn-primary btn-sm m-2">
+                <i class="bi bi-plus-lg"></i>&nbsp;Add Order</a><br>
+        </div>
+        <div class="bg-white p-3">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">total Cost</th>
+                    <th scope="col">Products</th>
+                </tr>
+                </thead>
+                <tbody th:each="order:${orders}">
+                <tr>
+                    <td th:text="${order.id}"></td>
+                    <td th:text="${order.localDate}"></td>
+                    <td th:text="${order.totalPrice}"></td>
+                    <td th:text="${order.products}"></td>
+                    <td>
+
+                        <a class="btn btn-danger btn-sm"
+                           th:href="@{/delete-order/{id}(id=${order.id})}"
+                           role="button">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <p class="font-weight-bold fs-3 text-center bg-white" th:text="${ordersInfo}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
