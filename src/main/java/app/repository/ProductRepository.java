@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Repository
 public class ProductRepository {
 
@@ -29,5 +31,11 @@ public class ProductRepository {
                 .filter(p -> p.getId().equals(id))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public List<Product> findAllById(List<Long> ids) {
+        return products.stream()
+                .filter(p -> ids.contains(p.getId()))
+                .collect(Collectors.toList());
     }
 }

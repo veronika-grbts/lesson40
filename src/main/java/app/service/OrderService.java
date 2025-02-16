@@ -19,9 +19,6 @@ public class OrderService {
     @Autowired
     OrderRepository repository;
 
-    @Autowired
-    ProductRepository productRepository;
-
     public boolean create(OrderDtoRequest request) {
 
         Order order = new Order(request.creationDate(), request.totalCost(), request.products());
